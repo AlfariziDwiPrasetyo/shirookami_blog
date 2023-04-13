@@ -1,0 +1,59 @@
+{% extends "layout.html"%}
+
+{% block content %}
+
+<header class="w-full mx-auto container">
+    <div class="flex flex-col items-center mx-auto py-12 w-full">
+        <a class="font-bold text-gray-900 uppercase hover:text-gray-700 text-4xl lg:text-5xl">
+            Shirookami Blog
+        </a>
+        <p class="text-base lg:text-lg text-gray-600">
+            My personal Blog
+        </p>
+    </div>
+</header>
+
+<div class="container flex justify-between xl:grid grid-cols-3 mx-auto flex flex-wrap py-6">
+
+
+    <!-- Artikel -->
+    <section class="w-full flex flex-col xl:col-span-2 items-center px-3 xl:pl-40 float-left">
+
+        {% for post in posts %}
+        <article class="flex flex-col shadow my-4">
+            <a href="./page/pertemuan1.html" class="hover:opacity-75">
+                <img src="{{ url_for('static', filename='../img/3627634.jpg') }}" class="w-full xl:h-70">
+            </a>
+            <div class="bg-white flex flex-col justify-start p-6">
+                <p class="text-purple-700 text-sm font-bold uppercase pb-4">Wirausaha</p>
+                <a href="./page/pertemuan1.html" class="text-3xl font-bold hover:text-gray-700 pb-4">Kewirausahaan</a>
+                <p href="#" class="text-sm pb-3">
+                    <a href="https://www.instagram.com/alfariziiprasetyo/" class="font-semibold hover:text-gray-800">{{ post.author }}</a>, {{ post.date_posted }}
+                </p>
+                <a href="./page/pertemuan1.html" class="pb-6">Pengertian wirausaha sama dengan wiraswasta, yaitu orang yang pandai atau berbakat mengenali produk baru, menentukan cara produksi baru, menyusun operasi untuk pengadaan produk baru, memasarkannya, serta mengatur permodalan operasinya.</a>
+                <a href="./page/pertemuan1.html" class="uppercase text-gray-900 hover:text-black">Lanjutkan Baca <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+        {% endfor %}
+
+    </section>
+
+    <!-- Samping -->
+    <aside class="w-full flex flex-col items-center px-3">
+
+        <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+            <p class="text-xl font-semibold pb-5">Populer</p>
+            <p class="pb-2">Halo perkenalkan nama saya AL Farizi Dwi Prasetyo, saya berasal dari Indramayu, saya saat ini sedang kuliah di Universitas Muhammadiyah Cirebon dengan mengambil jurusan Teknik informatika</p>
+            <a href="https://www.instagram.com/alfariziiprasetyo/" class="w-full bg-purple-800 text-white font-bold text-sm uppercase rounded hover:bg-purple-700 flex items-center justify-center px-2 py-3 mt-4">
+                Follow Instagram
+            </a>
+        </div>
+
+    </aside>
+
+
+
+</div>
+
+
+{% endblock %}
