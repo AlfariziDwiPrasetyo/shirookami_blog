@@ -1,5 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+    <div class="text-center py-4 lg:px-4 bg-{{category}}">
+        <div class="p-2 bg-red-800 items-center text-red-100 leading-none rounded-full flex inline-flex" role="alert">
+          <span class="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">Error!</span>
+          <span class="font-semibold mr-2 text-left flex-auto">{{message}}</span>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
 <section class="bg-gray-50 dark:bg-gray-900 h-screen">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
