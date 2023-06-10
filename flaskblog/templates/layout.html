@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
@@ -22,17 +23,6 @@
 </head>
 <body class="font-family-karla">
 
-<!-- <nav class="w-full py-4 shadow">
-    <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
-        <nav>
-            <ul class="flex items-center justify-between font-bold px-2 text-sm uppercase no-underline">
-                <li> <img src="{{ url_for('static', filename='../img/makimasus.jpg') }}"alt="" class="w-12"></li>
-                <li><p class="px-4">Al Farizi Dwi Prasetyo</p></li>
-                <li class=""></li>
-            </ul>
-        </nav>
-</nav> -->
-
 
 
 
@@ -46,6 +36,21 @@
     </a>
         <!-- Login and Sign Up -->
     <div class="flex md:order-2">
+
+        {% if current_user.is_authenticated %}
+            <a href="{{url_for('new_post')}}">
+            <button type="button" class="text-white bg-purple-800 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-purple-700 dark:hover:bg-purple-700 dark:focus:ring-blue-800">Create</button>
+            </button></a>
+    
+            <a href="{{url_for('account')}}">
+            <button type="button" class="text-white bg-purple-700 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg xl:ml-5 text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-purple-700 dark:hover:bg-purple-700 dark:focus:ring-blue-700">Account</button>
+            </button></a>
+
+            <a href="{{url_for('logout')}}">
+            <button type="button" class="text-white bg-purple-700 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg xl:ml-5 text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-purple-700 dark:hover:bg-purple-700 dark:focus:ring-blue-700">Logout</button>
+            </button></a>
+
+        {% else %}
         <a href="{{url_for('login')}}">
         <button type="button" class="text-white bg-purple-800 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-purple-700 dark:hover:bg-purple-700 dark:focus:ring-blue-800">Login</button>
         </button></a>
@@ -53,6 +58,8 @@
         <a href="{{url_for('register')}}">
         <button type="button" class="text-white bg-purple-700 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg xl:ml-5 text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-purple-700 dark:hover:bg-purple-700 dark:focus:ring-blue-700">Sign Up</button>
         </button></a>
+
+        {% endif %}
 
     </div>
     </div>

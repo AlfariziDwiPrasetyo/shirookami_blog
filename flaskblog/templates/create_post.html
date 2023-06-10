@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<section class=" py-1 bg-blueGray-50">
+<div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
+  <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+    <div class="rounded-t bg-white mb-0 px-6 py-6">
+      <div class="text-center flex justify-between">
+        <h6 class="text-blueGray-700 text-xl font-bold">
+          What's in your mind ?
+        </h6>
+      </div>
+    </div>
+    <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+      <form method="POST", action="">
+        {{form.hidden_tag()}}
+        <!-- title -->
+        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+          {{form.title.label}}
+        </h6>
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-12/12 px-4">
+            <div class="relative w-full mb-3">
+
+
+              <!-- Title -->
+
+              {% if form.title.errors %}
+
+              {{form.title(class="border-0 px-3 py-3 placeholder-purple-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+
+              <div class="text-red-500 text-sms">
+                  {% for error in form.title.errors %}
+                      <span> {{ error }}</span>
+                  {% endfor %}
+              </div>
+
+          {% else %}
+
+          {{form.title(class="border-0 px-3 py-3 placeholder-purple-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+          
+          {% endif %}
+            </div>
+          </div>
+          <div class="w-full lg:w-4/12 px-4">
+          </div>
+
+        </div>
+    
+        
+        <!-- content -->
+        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+          {{form.content.label}}
+        </h6>
+
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-12/12 px-4">
+            <div class="relative w-full mb-3">
+              {% if form.content.errors %}
+
+              {{form.content(class="border-0 px-3 py-3 placeholder-purple-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+              <div class="text-red-500 text-sms">
+                  {% for error in form.content.errors %}
+                      <span> {{ error }}</span>
+                  {% endfor %}
+              </div>
+
+          {% else %}
+          
+
+          {{form.content(class="border-0 px-3 py-3 placeholder-purple-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+          
+          {% endif %}
+            </div>
+          </div>
+        </div>
+
+
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-12/12 px-4">
+            <div class="relative w-full mb-3">
+              {{form.submit(class="float-right w-2/12 mt-5 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800")}}
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+      {{ckeditor.load()}}
+      {{ckeditor.config(name='content')}}
+
+
+    </div>
+  </div>
+  <footer class="relative  pt-8 pb-6 mt-2">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap items-center md:justify-between justify-center">
+      <div class="w-full md:w-6/12 px-4 mx-auto text-center">
+        <div class="text-sm text-blueGray-500 font-semibold py-1">
+          MADE BY SHIROOKAMI
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+</section>
+{% endblock %}
