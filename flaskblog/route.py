@@ -7,22 +7,10 @@ from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, Post
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
-
-posts = [
-    {
-    'author':'Al Farizi Dwi Prasetyo',
-    'date_posted':'11 April 2023',
-    },
-    {
-    'author':'Al Farizi Dwi Prasetyo',
-    'date_posted':'12 April 2023',
-    },
-
-]
-
 @app.route("/")
 @app.route("/home")
 def home():
+    posts = Post.query.all()
     return render_template('home.html', posts=posts, title='Posts')
 
 @app.route("/about")
@@ -118,6 +106,9 @@ def edit():
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
         flash('Your post has been created')
         return redirect(url_for('home'))
     return render_template('create_post.html', title="New Post", form=form)
