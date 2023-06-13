@@ -18,10 +18,10 @@
 <header class="w-full mx-auto container">
     <div class="flex flex-col items-center mx-auto py-12 w-full">
         <a class="font-bold text-gray-900 uppercase hover:text-gray-700 text-4xl lg:text-5xl">
-            Shirookami Blog
+            ViewGet
         </a>
         <p class="text-base lg:text-lg text-gray-600">
-            My personal Blog
+            Review Blog
         </p>
     </div>
 </header>
@@ -34,14 +34,14 @@
 
         {% for post in posts %}
         <article class="flex flex-col shadow my-4">
-            <a href="./page/pertemuan1.html" class="hover:opacity-75">
+            <a href="{{ url_for('post', post_id=post.id)}}" class="hover:opacity-75">
                 <img src="{{ url_for('static', filename='../img/3627634.jpg') }}" class="w-full xl:h-50">
             </a>
             <div class="bg-white flex flex-col justify-start p-6">
                 <p class="text-purple-700 text-sm font-bold uppercase pb-4">Wirausaha</p>
                 <p href="./page/pertemuan1.html" class="text-3xl font-bold hover:text-gray-700 pb-4">{{ post.title }}</p>
                 <p href="#" class="text-sm pb-3">
-                    <a href="https://www.instagram.com/alfariziiprasetyo/" class="font-semibold hover:text-gray-800">{{ post.author }}</a>, {{ post.date_posted }}
+                    <a href="https://www.instagram.com/alfariziiprasetyo/" class="font-semibold hover:text-gray-800">{{ post.author.username }}</a>, {{ post.date.strftime('%d-%m-%Y') }}
                 </p>
                 <p class="pb-6">{{ post.content | striptags | truncate(300) }}</p>
                 <a href="./page/pertemuan1.html" class="uppercase text-gray-900 hover:text-black">Lanjutkan Baca <i class="fas fa-arrow-right"></i></a>

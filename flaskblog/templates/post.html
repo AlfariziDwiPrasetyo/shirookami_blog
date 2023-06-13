@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+	
+	<!--judul-->
+	<div class="text-center pt-16 md:pt-32">
+		<p class="text-sm md:text-base text-purple-800 font-bold"> {{post.date.strftime('%d %B %Y')}} </p>
+		<h1 class="font-bold break-normal text-3xl md:text-5xl">{{post.title}}</h1>
+	</div>
+
+	<!--image-->
+	<div class="container flex w-100% max-w-6xl mx-auto bg-white bg-cover mt-8 rounded"></div>
+	<img class="lg:w-2/4 m-auto" src="../img/3627634.jpg" alt="">
+	<!--Container-->
+	<div class="container max-w-5xl mx-auto mt-20">
+		
+		<div class="mx-0 sm:mx-6">
+			
+			<div class="bg-white w-full p-8 md:p-24 text-xl md:text-2xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
+				
+				<!-- Content-->
+
+				{{post.content | safe}}
+
+
+                <!-- quote -->
+				<blockquote class="border-l-4 border-green-500 italic my-8 pl-8 md:pl-12 mt-32">“Jika Anda tidak membangun impian Anda, orang lain akan mempekerjakan Anda untuk membantu mereka membangun impian mereka.” – Dhirubhai Ambani</blockquote>
+                
+            </div>
+
+												
+				<!--/ Post Content-->
+	
+				<!--Author-->
+				<div class="flex w-full items-center font-sans p-8 md:p-24">
+					<img class="w-10 h-10 rounded-full mr-4" src="../img/makimasus.jpg" alt="Avatar of Author">
+					<div class="flex-1">
+						<p class="font-bold text-base md:text-xl leading-none">Al Farizi Dwi Prasetyo</p>
+						<p class="text-gray-600 text-xs md:text-base">Mahasiwa Universitas Muhammadiyah Cirebon</a></p>
+					</div>
+				</div>
+				<!--/Author-->
+
+
+
+
+
+
+{% endblock %}
