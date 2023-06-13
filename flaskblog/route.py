@@ -118,6 +118,8 @@ def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', title=post.title, post=post)
 
+
+
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
 @login_required
 def update_post(post_id):
@@ -132,5 +134,5 @@ def update_post(post_id):
         return redirect(url_for('post', post_id=post.id))
     elif request.method == 'GET':
         form.title.data = post.title
-        form.title.content = post.content
+        form.content.data = post.content
     return render_template('create_post.html', form=form, legend='Update Post')

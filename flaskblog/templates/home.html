@@ -41,7 +41,7 @@
                 <p class="text-purple-700 text-sm font-bold uppercase pb-4">Wirausaha</p>
                 <p href="./page/pertemuan1.html" class="text-3xl font-bold hover:text-gray-700 pb-4">{{ post.title }}</p>
                 <p href="#" class="text-sm pb-3">
-                    <a href="https://www.instagram.com/alfariziiprasetyo/" class="font-semibold hover:text-gray-800">{{ post.author.username }}</a>, {{ post.date.strftime('%d-%m-%Y') }}
+                    <a href="https://www.instagram.com/alfariziiprasetyo/" class="font-semibold hover:text-gray-800">{{ post.author.username }}</a>, {{ post.date.strftime('%d %B %Y') }}
                 </p>
                 <p class="pb-6">{{ post.content | striptags | truncate(300) }}</p>
                 <a href="./page/pertemuan1.html" class="uppercase text-gray-900 hover:text-black">Lanjutkan Baca <i class="fas fa-arrow-right"></i></a>

@@ -15,16 +15,30 @@
 		
 		<div class="mx-0 sm:mx-6">
 			
-			<div class="bg-white w-full p-8 md:p-24 text-xl md:text-2xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
+			<div class="bg-white w-full p-8 md:p-24 text-xl md:text-xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
 				
 				<!-- Content-->
 
 				{{post.content | safe}}
 
 
-                <!-- quote -->
-				<blockquote class="border-l-4 border-green-500 italic my-8 pl-8 md:pl-12 mt-32">“Jika Anda tidak membangun impian Anda, orang lain akan mempekerjakan Anda untuk membantu mereka membangun impian mereka.” – Dhirubhai Ambani</blockquote>
-                
+			
+			
+			{% if post.author == current_user %}
+			<div class="button mt-12">
+			<a href="{{ url_for('update_post', post_id=post.id)}}">
+				<button
+				class="middle none center mr-4 rounded-lg bg-green-500 py-3 px-6 font-sans text-sm text-white shadow-md transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+				>Update</button></a>
+
+
+			<button
+			class="middle none center mr-4 rounded-lg bg-red-500 py-3 px-6 font-sans text-sm text-white shadow-md transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+			>Delete</button>
+			</div>
+			{% endif %}
+
+
             </div>
 
 												
