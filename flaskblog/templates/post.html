@@ -15,7 +15,7 @@
 		
 		<div class="mx-0 sm:mx-6">
 			
-			<div class="bg-white w-full p-8 md:p-24 text-xl md:text-xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
+			<div class="bg-white w-ful p-8 md:p-24 text-xl md:text-xl text-gray-800 leading-normal">
 				
 				<!-- Content-->
 
@@ -25,17 +25,69 @@
 			
 			
 			{% if post.author == current_user %}
+
+
 			<div class="button mt-12">
 			<a href="{{ url_for('update_post', post_id=post.id)}}">
 				<button
 				class="middle none center mr-4 rounded-lg bg-green-500 py-3 px-6 font-sans text-sm text-white shadow-md transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
 				>Update</button></a>
 
-
-			<button
-			class="middle none center mr-4 rounded-lg bg-red-500 py-3 px-6 font-sans text-sm text-white shadow-md transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-			>Delete</button>
+			<!-- Button -->
+			<button id="openModalBtn" class="middle none center mr-4 rounded-lg bg-red-500 py-3 px-6 font-sans text-sm text-white shadow-md transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+				Delete
+			</button>
+			
+			<!-- Modal -->
+			<div id="myModal" class="modal hidden fixed inset-0 flex items-center justify-center z-50">
+				<div class="modal-overlay absolute inset-0 bg-black opacity-50"></div>
+				<div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+				<div class="modal-content py-4 text-left px-6">
+					<div class="flex justify-between items-center pb-3">
+					<p class="text-2xl font-bold">Warning</p>
+					<button id="closeModalBtn" class="modal-close">
+						<svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+						<path
+							d="M18 1.02L16.98 0 9 7.98 1.02 0 0 1.02 7.98 9 0 16.98 1.02 18 9 10.02 16.98 18 18 16.98 10.02 9 18 1.02z" />
+						</svg>
+					</button>
+					</div>
+					<div class="modal-body">
+					<p>Are you sure to delete this content ? </p>
+					</div>
+					<div class="flex justify-end pt-2">
+					<button id="closeModalBtn" class="modal-close middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-sm text-white shadow-md transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+						No
+					</button>
+					<form action="{{url_for('delete_post', post_id=post.id)}}" method="POST">
+						<input 
+						class="middle none center cursor-pointer mr-4 rounded-lg bg-red-500 py-3 px-6 font-sans text-sm text-white shadow-md transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" 
+						value="Delete" 
+						type="submit">
+					</form>
+					</div>
+				</div>
+				</div>
 			</div>
+			
+			<!-- JavaScript -->
+			<script>
+				const openModalBtn = document.getElementById('openModalBtn');
+				const closeModalBtns = document.querySelectorAll('.modal-close');
+				const modal = document.getElementById('myModal');
+			
+				openModalBtn.addEventListener('click', () => {
+				modal.classList.remove('hidden');
+				});
+			
+				closeModalBtns.forEach(btn => {
+				btn.addEventListener('click', () => {
+					modal.classList.add('hidden');
+				});
+				});
+			</script>
+
+			
 			{% endif %}
 
 

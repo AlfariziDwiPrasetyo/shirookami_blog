@@ -39,12 +39,12 @@
             </a>
             <div class="bg-white flex flex-col justify-start p-6">
                 <p class="text-purple-700 text-sm font-bold uppercase pb-4">Wirausaha</p>
-                <p href="./page/pertemuan1.html" class="text-3xl font-bold hover:text-gray-700 pb-4">{{ post.title }}</p>
+                <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">{{ post.title }}</a>
                 <p href="#" class="text-sm pb-3">
-                    <a href="https://www.instagram.com/alfariziiprasetyo/" class="font-semibold hover:text-gray-800">{{ post.author.username }}</a>, {{ post.date.strftime('%d %B %Y') }}
+                    <a href="{{url_for('account')}}" class="font-semibold hover:text-gray-800">{{ post.author.username }}</a>, {{ post.date.strftime('%d %B %Y') }}
                 </p>
-                <p class="pb-6">{{ post.content | striptags | truncate(300) }}</p>
-                <a href="./page/pertemuan1.html" class="uppercase text-gray-900 hover:text-black">Lanjutkan Baca <i class="fas fa-arrow-right"></i></a>
+                <p class="pb-6">{{ post.content| striptags | truncate(300) }}</p>
+                <a href="{{ url_for('post', post_id=post.id)}}" class="uppercase text-gray-900 hover:text-black">Lanjutkan Baca <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
         {% endfor %}
@@ -55,7 +55,7 @@
     <aside class="w-full flex flex-col items-center px-3">
 
         <div class="w-full bg-white shadow flex flex-col my-4 p-6">
-            <p class="text-xl font-semibold pb-5">Populer</p>
+            <p class="text-xl font-semibold pb-5">About Me</p>
             <p class="pb-2">Halo perkenalkan nama saya AL Farizi Dwi Prasetyo, saya berasal dari Indramayu, saya saat ini sedang kuliah di Universitas Muhammadiyah Cirebon dengan mengambil jurusan Teknik informatika</p>
             <a href="https://www.instagram.com/alfariziiprasetyo/" class="w-full bg-purple-800 text-white font-bold text-sm uppercase rounded hover:bg-purple-700 flex items-center justify-center px-2 py-3 mt-4">
                 Follow Instagram
