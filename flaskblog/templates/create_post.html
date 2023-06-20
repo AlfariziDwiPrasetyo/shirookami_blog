@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-      <form method="POST", action="">
+      <form method="POST" action="" enctype="multipart/form-data">
         {{form.hidden_tag()}}
         <!-- title -->
         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
@@ -75,6 +75,25 @@
             </div>
           </div>
         </div>
+
+        <!-- Thumbnail -->
+
+        <div>
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            {{form.thumbnail.label}}
+          </h6>
+
+          {{form.thumbnail(class="block w-3/9 text-sm text-white-900 border border-gray-300 cursor-pointer bg-white-50 focus:outline-none dark:placeholder-gray-400")}}
+
+          {% if form.thumbnail.errors %}
+          <div class="text-red-500">
+              {% for error in form.thumbnail.errors %}
+                  <span> {{ error }}</span>
+              {% endfor %}
+          </div>
+          {% endif %}
+
+      </div>
 
 
         <div class="flex flex-wrap">

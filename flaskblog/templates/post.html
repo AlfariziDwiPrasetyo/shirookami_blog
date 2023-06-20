@@ -2,14 +2,14 @@
 {% block content %}
 	
 	<!--judul-->
-	<div class="text-center pt-16 md:pt-32">
+	<div class="text-center w-100% pt-16 md:pt-32">
 		<p class="text-sm md:text-base text-purple-800 font-bold"> {{post.date.strftime('%d %B %Y')}} </p>
-		<h1 class="font-bold break-normal text-3xl md:text-5xl">{{post.title}}</h1>
+		<h1 class="font-bold break-normal px-20 text-3xl md:text-5xl">{{post.title}}</h1>
 	</div>
 
 	<!--image-->
 	<div class="container flex w-100% max-w-6xl mx-auto bg-white bg-cover mt-8 rounded"></div>
-	<img class="lg:w-2/4 m-auto" src="../img/3627634.jpg" alt="">
+	<img class="lg:w-2/4 m-auto" src="{{ url_for('static', filename='profile_pics/' + post.thumbnail) }}" alt="">
 	<!--Container-->
 	<div class="container max-w-5xl mx-auto mt-20">
 		

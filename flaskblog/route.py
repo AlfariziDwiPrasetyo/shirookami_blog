@@ -11,7 +11,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route("/home")
 def home():
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.paginate(page=page, per_page=3)
+    posts = Post.query.order_by(Post.date.desc()).paginate(page=page, per_page=3)
     return render_template('home.html', posts=posts, title='Posts')
 
 @app.route("/about")
@@ -71,7 +71,7 @@ def account():
 
 
 
-def save_picture(form_picture):
+def save_picture_profile(form_picture):
     random_hex = secrets.token_hex(8)
     _, _ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + _ext
@@ -91,23 +91,41 @@ def edit():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
-            picture_file = save_picture(form.picture.data)
+            picture_file = save_picture_profile(form.picture.data)
             current_user.image_file = picture_file
         current_user.username = form.username.data
         current_user.email = form.email.data
+        current_user.role = form.role.data
         db.session.commit()
         return redirect(url_for('account'))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
+        form.role.data = current_user.role
     return render_template('edit.html', title='Edit', form=form)
+
+
+
+def save_picture_tn(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, _ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + _ext
+    picture_path = os.path.join(app.root_path, 'img/profile_pics', picture_fn)
+
+    size = (1080, 1920)
+    i = Image.open(form_picture)
+    i.thumbnail(size)
+
+    i.save(picture_path)
+    return picture_fn 
 
 @app.route("/post/new", methods=['GET', 'POST'])
 @login_required
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        picture_file = save_picture_tn(form.thumbnail.data)
+        post = Post(title=form.title.data, content=form.content.data, author=current_user, thumbnail=picture_file)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created')
@@ -119,8 +137,6 @@ def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', title=post.title, post=post)
 
-
-
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
 @login_required
 def update_post(post_id):
@@ -129,6 +145,7 @@ def update_post(post_id):
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
+        post.thumbnail = form.thumbnail.data
         post.title = form.title.data
         post.content = form.content.data
         db.session.commit()

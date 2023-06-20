@@ -35,6 +35,7 @@ class UpdateAccountForm(FlaskForm):
     email = StringField('Email', validators= [DataRequired(), Email()])
     picture = FileField('Update profile picture', validators = [FileAllowed(["jpg", "png", "jpeg"])])
     submit = SubmitField('Submit')
+    role = StringField('Role')
     
     def validate_username(self, username):
         if username.data != current_user.username:
@@ -52,5 +53,5 @@ class UpdateAccountForm(FlaskForm):
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = CKEditorField('Content', validators=[DataRequired()])
+    thumbnail = FileField('Thumbnail', validators = [FileAllowed(["jpg", "png", "jpeg"])])
     submit = SubmitField('Post')
-    # thumbnail = FileField('Update profile picture', validators = [FileAllowed(["jpg", "png", "jpeg"])])
