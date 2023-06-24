@@ -43,8 +43,8 @@
                 <p href="#" class="text-sm pb-3">
                     <a href="{{url_for('account')}}" class="font-semibold hover:text-gray-800">{{ post.author.username }}</a>, {{ post.date.strftime('%d %B %Y') }}
                 </p>
-                <p class="pb-6">{{ post.content| striptags | truncate(300) }}</p>
-                <a href="{{ url_for('post', post_id=post.id)}}" class="uppercase text-gray-900 hover:text-black">Lanjutkan Baca <i class="fas fa-arrow-right"></i></a>
+                <p class="pb-2">{{ post.content| striptags | truncate(300) }}</p>
+                
             </div>
         </article>
         {% endfor %}

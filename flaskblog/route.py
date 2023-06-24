@@ -124,8 +124,11 @@ def save_picture_tn(form_picture):
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
-        picture_file = save_picture_tn(form.thumbnail.data)
-        post = Post(title=form.title.data, content=form.content.data, author=current_user, thumbnail=picture_file)
+        if form.thumbnail.data:
+            picture_file = save_picture_tn(form.thumbnail.data)
+            post = Post(title=form.title.data, content=form.content.data, author=current_user, thumbnail=picture_file)
+        else:
+            post = Post(title=form.title.data, content=form.content.data, author=current_user)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created')
@@ -145,7 +148,8 @@ def update_post(post_id):
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
-        post.thumbnail = form.thumbnail.data
+        if form.thumbnail.data:
+            post.thumbnail = save_picture_tn(form.thumbnail.data)
         post.title = form.title.data
         post.content = form.content.data
         db.session.commit()
