@@ -11,7 +11,7 @@
 	<div class="container flex w-100% max-w-6xl mx-auto bg-white bg-cover mt-8 rounded"></div>
 	<img class="lg:w-3/4 m-auto" src="{{ url_for('static', filename='profile_pics/' + post.thumbnail) }}" alt="">
 	<!--Container-->
-	<div class="container max-w-5xl mx-auto mt-20">
+	<div class="container max-w-5xl mx-auto mt-12">
 		
 		<div class="mx-0 sm:mx-6">
 			
@@ -98,10 +98,10 @@
 	
 				<!--Author-->
 				<div class="flex w-full items-center font-sans p-8 md:p-24">
-					<img class="w-10 h-10 rounded-full mr-4" src="../img/makimasus.jpg" alt="Avatar of Author">
+					<img class="w-10 h-10 rounded-full mr-4" src="{{url_for('static', filename='profile_pics/' + post.author.image_file)}}" alt="Avatar of Author">
 					<div class="flex-1">
-						<p class="font-bold text-base md:text-xl leading-none">Al Farizi Dwi Prasetyo</p>
-						<p class="text-gray-600 text-xs md:text-base">Mahasiwa Universitas Muhammadiyah Cirebon</a></p>
+						<p class="font-bold text-base md:text-xl leading-none">{{ post.author.username }}</p>
+						<p class="text-gray-600 text-xs md:text-base">{{post.author.role}}</a></p>
 					</div>
 				</div>
 			</div>

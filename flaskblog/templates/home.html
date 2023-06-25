@@ -3,16 +3,16 @@
 {% block content %}
 
 {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
+    {% if messages %}
     {% for category, message in messages %}
     <div class="text-center py-4 lg:px-4 bg-{{category}}">
         <div class="p-2 bg-green-800 items-center text-green-100 leading-none rounded-full flex inline-flex" role="alert">
-          <span class="flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3">Success!</span>
-          <span class="font-semibold mr-2 text-left flex-auto">{{message}}</span>
+            <span class="flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3">Success!</span>
+            <span class="font-semibold mr-2 text-left flex-auto">{{message}}</span>
         </div>
-      </div>
+    </div>
     {% endfor %}
-  {% endif %}
+    {% endif %}
 {% endwith %}
 
 <header class="w-full mx-auto container">
