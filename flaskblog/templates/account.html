@@ -83,23 +83,21 @@
                 </div>
             </div>
         
-            <div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
+            <div class="space-x-8 flex justify-between flex-col items-center mt-32 md:mt-0 md:justify-center">
                 <a href="{{url_for('edit')}}"><button
-                class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
-                >
-                Edit Account
-                </button>
+                class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">Edit Account</button>
                 </a>
-                </div>
+            </div>
             </div>
         
         <div class="mt-20 text-center pb-12">
             <h1 class="text-4xl font-medium text-gray-700">{{current_user.username}}</h1>
-            <p class="font-light text-gray-600 mt-3">Bucharest, Romania</p>
+            <p class="font-light text-gray-600 mt-3">{{current_user.role}}</p>
         
-            <p class="mt-8 text-gray-500">{{current_user.role}}</p>
-            <p class="mt-2 text-gray-500">University of Computer Science</p>
         </div>
+        <div class="mt-4 flex flex-col justify-center">
+            <p class="text-gray-600 text-center font-light lg:px-24">Saya seorang mahasiswa yang sedang menempuh pendidikan di Universitas Muhammadiyah Cirebon (UMC). Saya memiliki minat yang luas di berbagai bidang, termasuk anime, coding, teknologi. Dalam perjalanan kuliah saya, saya terus mengembangkan pengetahuan dan keterampilan saya dalam hal-hal yang saya sukai.</p>
+
         </div>
         
         </div>
